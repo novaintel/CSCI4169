@@ -3,12 +3,14 @@ package com.csci.easypass;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -17,12 +19,17 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+        Button btnNextScreen = (Button) findViewById(R.id.button1);
+        
+        btnNextScreen.setOnClickListener(new View.OnClickListener() {
+        	 
+            public void onClick(View arg0) {
+                //Starting a new Intent
+                Intent nextScreen = new Intent(getApplicationContext(), Create_account.class);
+                startActivity(nextScreen);}
+        });
+        
+   
     }
 
 
@@ -44,7 +51,9 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+       
     }
+    
 
     /**
      * A placeholder fragment containing a simple view.

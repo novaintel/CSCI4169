@@ -13,44 +13,46 @@
     tools:context="com.csci.easypass.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:inputType="textPassword" >
-
         <requestFocus />
-    </EditText>
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_marginBottom="27dp"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="19dp"
+            android:ems="10"
+            android:hint="@string/username"
+            android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_centerVertical="true"
-        android:text="@string/create_account" />
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/Button01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_centerVertical="true"
-        android:text="@string/login" />
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText1"
+            android:layout_centerVertical="true"
+            android:text="@string/create_account" />
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editText1"
+            android:layout_centerVertical="true"
+            android:text="@string/login" />
 
 </RelativeLayout>
