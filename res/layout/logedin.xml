@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/logedin_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#666666"
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/logedin_title_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/N7design_titlebar" >
+        android:background="@drawable/n7design_titlebar" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/add_new_account"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -19,26 +20,32 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="4dp"
-            android:background="@drawable/N7design_add" />
+            android:background="@drawable/n7design_add" />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/title_image"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_centerHorizontal="true"
             android:contentDescription="@+string/app_name"
-            android:src="@drawable/N7design_title" />
+            android:src="@drawable/n7design_title" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/setting_btn"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="4dp"
             android:layout_marginTop="4dp"
-            android:background="@drawable/N7design_setting" />
+            android:background="@drawable/n7design_setting" />
 
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/show_accounts"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

@@ -19,8 +19,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnNextScreen = (Button) findViewById(R.id.button1);
-        Button btnLogin = (Button)findViewById(R.id.button2);
+        Button btnNextScreen = (Button) findViewById(R.id.create_account_btn);
+        Button btnLogin = (Button)findViewById(R.id.login_btn);
         
         btnNextScreen.setOnClickListener(new View.OnClickListener() {
         	 

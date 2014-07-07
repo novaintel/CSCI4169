@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <!--! add new activity -->
+        
        <activity android:name="com.csci.easypass.Create_account"></activity>
        <activity android:name="com.csci.easypass.Login"></activity>
     </application>
