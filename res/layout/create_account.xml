@@ -2,62 +2,60 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#666666" >
-
-    <Button
-        android:id="@+id/add_new_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="@string/signup" />
+    android:background="#333333" >
 
     <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:id="@+id/create_password"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/create_reenter_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_centerVertical="false"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:id="@+id/create_username"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_above="@id/create_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
-        android:hint="@string/last_name"
+        android:hint="@string/username"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+    <Button
+        android:id="@+id/sign_up"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/create_reenter_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/n7design_titlebar"
+        android:text="@string/signup" />
+
+    <EditText
+        android:id="@+id/create_reenter_password"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="29dp"
         android:ems="10"
         android:hint="@string/reenter_password"
         android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="107dp"
-        android:ems="10"
-        android:hint="@string/first_name"
-        android:inputType="textPersonName" android:layout_alignParentRight="true">
-
-        <requestFocus />
-    </EditText>
+        android:layout_above="@+id/create_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo" />
 
 </RelativeLayout>

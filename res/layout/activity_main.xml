@@ -9,30 +9,46 @@
     android:layout_marginRight="0dp"
     android:layout_marginStart="0dp"
     android:layout_marginTop="0dp"
-    android:background="#666666"
+    android:background="#333333"
     tools:context="com.csci.easypass.MainActivity"
     tools:ignore="MergeRootFrame" >
 
         <requestFocus />
+        <RelativeLayout
+        android:id="@+id/firstpage_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/n7design_titlebar" >
+
+
+        <ImageView
+            android:id="@+id/title_image"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@+string/app_name"
+            android:src="@drawable/n7design_title" />
+
+    </RelativeLayout>
 
         <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
+            android:id="@+id/firstpage_username"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editText2"
+            android:layout_above="@+id/firstpage_password"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="19dp"
+            android:layout_marginBottom="24dp"
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText2"
-            android:layout_width="wrap_content"
+            android:id="@+id/firstpage_password"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/create_account_btn"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="24dp"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword" />
@@ -40,19 +56,33 @@
         <Button
             android:id="@+id/create_account_btn"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editText1"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_alignLeft="@+id/firstpage_username"
             android:layout_centerVertical="true"
-            android:text="@string/create_account" />
+            android:background="@drawable/n7design_titlebar"
+            android:text="@string/create_account"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/login_btn"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/editText1"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_alignRight="@+id/firstpage_username"
             android:layout_centerVertical="true"
-            android:text="@string/login" />
+            android:background="@drawable/n7design_titlebar"
+            android:text="@string/login"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/firstpage_username"
+            android:layout_alignLeft="@+id/firstpage_username"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logo" />
 
 </RelativeLayout>
