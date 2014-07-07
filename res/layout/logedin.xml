@@ -3,6 +3,7 @@
     android:id="@+id/logedin_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333333"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -42,10 +43,27 @@
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/show_accounts"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content" >
-    </ListView>
+    <LinearLayout
+        android:id="@+id/logedin_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false" >
+
+        <ListView
+            android:id="@+id/show_accounts"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </ListView>
+
+        <RelativeLayout
+            android:id="@+id/logedin_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -14,22 +14,6 @@
     tools:ignore="MergeRootFrame" >
 
         <requestFocus />
-        <RelativeLayout
-        android:id="@+id/firstpage_title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/n7design_titlebar" >
-
-
-        <ImageView
-            android:id="@+id/title_image"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@+string/app_name"
-            android:src="@drawable/n7design_title" />
-
-    </RelativeLayout>
 
         <EditText
             android:id="@+id/firstpage_username"
