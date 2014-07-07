@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnNextScreen = (Button) findViewById(R.id.button1);
+        Button btnLogin = (Button)findViewById(R.id.button2);
         
         btnNextScreen.setOnClickListener(new View.OnClickListener() {
         	 
@@ -29,6 +30,12 @@ public class MainActivity extends Activity {
                 startActivity(nextScreen);}
         });
         
+        btnLogin.setOnClickListener(new View.OnClickListener() {       	 
+            public void onClick(View arg0) {
+                //Starting a new Intent
+                Intent nextScreen = new Intent(getApplicationContext(), Login.class);
+                startActivity(nextScreen);}
+        });
    
     }
 
