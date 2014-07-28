@@ -2,6 +2,8 @@ package com.csci.easypass;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +26,7 @@ public class Logedin extends Activity {
     TextView username;
     TextView password;
     MySQLiteHelper db;
+    ArrayList<Integer> listWebIDs;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logedin);
@@ -43,17 +46,19 @@ public class Logedin extends Activity {
          * CRUD Operations
          * */
         // add Books
-        db.addUser(new User("James", "1234"));
-        db.addWebsite(new Website("www","James", "1234"));
-        db.addWebsite(new Website("google.ca","Moe", "password"));
+        //db.addUser(new User("James", "1234"));
+        //db.addWebsite(new Website("www","James", "1234"));
+        //db.addWebsite(new Website("google.ca","Moe", "password"));
 
         List<User> listUser = db.getAllUsers();
         List<Website> listWebsite = db.getAllWebsites();
+        listWebIDs = new ArrayList<Integer>();
 
-        ArrayList<String> websiteurl = new ArrayList<String>();
+        final ArrayList<String> websiteurl = new ArrayList<String>();
 
         for(Website website:listWebsite){
             websiteurl.add(website.getWebsiteUrl());
+            listWebIDs.add(website.getId());
         }
 
         db.getAllWebsites();
@@ -70,11 +75,10 @@ public class Logedin extends Activity {
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
-                String selectedFromList =(String) (lv.getItemAtPosition(myItemInt));
-                websiteUrl.setText(selectedFromList);
-                Website selectedWebsite = db.getWebSite(selectedFromList);
-                username.setText(selectedWebsite.getUsername());
-                password.setText(selectedWebsite.getPassword());
+                Website currentWebsite = db.getWebSite(listWebIDs.get((int)mylng));
+                username.setText(currentWebsite.getUsername());
+                password.setText(currentWebsite.getPassword());
+                websiteUrl.setText(currentWebsite.getWebsiteUrl());
             }
         });
 

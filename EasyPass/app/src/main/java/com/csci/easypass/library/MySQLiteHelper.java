@@ -141,17 +141,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public Website getWebSite(String webSiteUrl){
+    public Website getWebSite(int id){
 
         // 1. get reference to readable DB
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // 2. build query
         Cursor cursor =
                 db.query(TABLE_WEBSITE, // a. table
-                        COLUMNSUSER, // b. column names
+                        COLUMNSWEBSITE, // b. column names
                         " id = ?", // c. selections
-                        new String[] { webSiteUrl }, // d. selections args
+                        new String[] { String.valueOf(id) }, // d. selections args
                         null, // e. group by
                         null, // f. having
                         null, // g. order by
@@ -168,7 +167,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         website.setUsername(cursor.getString(2));
         website.setPassword(cursor.getString(3));
 
-        Log.d("getURL("+webSiteUrl+")", website.toString());
+        Log.d("getURL("+id+")", website.toString());
 
         // 5. return book
         return website;
