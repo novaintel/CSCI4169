@@ -5,6 +5,10 @@ import com.csci.easypass.library.MySQLiteHelper;
 import com.csci.easypass.library.User;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +20,7 @@ public class Create_account extends Activity {
     TextView passwordAgainTextBox;
     TextView usernameTextBox;
     TextView passwordTextBox;
+    final Context context = this;
     MySQLiteHelper db;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,26 +45,60 @@ public class Create_account extends Activity {
             @Override
             public void onClick(View arg0) {
 
-                String username = (String)usernameTextBox.getText();
-                String password = (String)passwordTextBox.getText();
-                String passwordAgain = (String)passwordAgainTextBox.getText();
+                String username = usernameTextBox.getText().toString();
+                String password = passwordTextBox.getText().toString();
+                String passwordAgain = passwordAgainTextBox.getText().toString();
                 if(username.equals("") || username.equals(" ")){
-                    return;
+                    messgeBox("Please enter a username");
                 }
-                if(password.equals("") || password.equals(" ")){
-                    return;
+
+                else if(password.equals("") || password.equals(" ")){
+                    messgeBox("Please enter a password");
                 }
-                if(passwordAgain.equals("") || passwordAgain.equals(" ")){
-                    return;
+                else if(passwordAgain.equals("") || passwordAgain.equals(" ")){
+                    messgeBox("Please enter your password again");
                 }
-                if(password.equals(passwordAgain)){
+                else if(password.equals(passwordAgain)){
+                    messgeBox("Passwords do not match!");
+                }
+                else if(password.equals(passwordAgain)){
                     db.addUser(new User(username, password));
+                    Intent nextScreen = new Intent(getApplicationContext(), Logedin.class);
+                    startActivity(nextScreen);
                 }
+
 
             }
 
         });
 
+    }
+
+    private void messgeBox(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle("Create Account Error");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, close
+                        // current activity
+                        Create_account.this.finish();
+                    }
+                });
+
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
 }

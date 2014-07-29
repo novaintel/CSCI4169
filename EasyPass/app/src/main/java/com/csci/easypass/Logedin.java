@@ -23,42 +23,32 @@ import java.util.List;
  */
 
 public class Logedin extends Activity {
-    TextView websiteUrl;
-    TextView username;
-    TextView password;
+    TextView webSiteUrlText;
+    TextView usernameText;
+    TextView passwordText;
     MySQLiteHelper db;
     ArrayList<Integer> listWebIDs;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logedin);
 
-        websiteUrl=new TextView(this);
-        websiteUrl=(TextView)findViewById(R.id.websiteUrl_TextBox);
+        webSiteUrlText=new TextView(this);
+        webSiteUrlText=(TextView)findViewById(R.id.websiteUrl_TextBox);
 
-        username=new TextView(this);
-        username=(TextView)findViewById(R.id.username_TextBox);
+        usernameText=new TextView(this);
+        usernameText=(TextView)findViewById(R.id.username_TextBox);
 
-        password=new TextView(this);
-        password=(TextView)findViewById(R.id.password_TextBox);
+        passwordText=new TextView(this);
+        passwordText=(TextView)findViewById(R.id.password_TextBox);
 
         db = new MySQLiteHelper(this);
-
-        /**
-         * CRUD Operations
-         * */
-        // add Books
-        //db.addUser(new User("James", "1234"));
-        //db.addWebsite(new Website("www","James", "1234"));
-        //db.addWebsite(new Website("google.ca","Moe", "password"));
-
-        List<User> listUser = db.getAllUsers();
         List<Website> listWebsite = db.getAllWebsites();
         listWebIDs = new ArrayList<Integer>();
 
-        final ArrayList<String> websiteurl = new ArrayList<String>();
+        final ArrayList<String> webSiteUrl = new ArrayList<String>();
 
         for(Website website:listWebsite){
-            websiteurl.add(website.getWebsiteUrl());
+            webSiteUrl.add(website.getWebsiteUrl());
             listWebIDs.add(website.getId());
         }
 
@@ -68,7 +58,7 @@ public class Logedin extends Activity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                websiteurl );
+                webSiteUrl );
 
         final ListView lv = (ListView) findViewById(R.id.show_accounts);
 
@@ -77,9 +67,9 @@ public class Logedin extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
                 Website currentWebsite = db.getWebSite(listWebIDs.get((int)mylng));
-                username.setText(currentWebsite.getUsername());
-                password.setText(currentWebsite.getPassword());
-                websiteUrl.setText(currentWebsite.getWebsiteUrl());
+                usernameText.setText(currentWebsite.getUsername());
+                passwordText.setText(currentWebsite.getPassword());
+                webSiteUrlText.setText(currentWebsite.getWebsiteUrl());
             }
         });
 

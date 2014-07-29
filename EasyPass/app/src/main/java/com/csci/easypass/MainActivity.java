@@ -2,7 +2,10 @@ package com.csci.easypass;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,15 +15,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.os.Build;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.csci.easypass.library.MySQLiteHelper;
+import com.csci.easypass.library.User;
+
 
 public class MainActivity extends Activity {
-
+    MySQLiteHelper db;
+    TextView usernameTextBox;
+    TextView passwordTextBox;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnNextScreen = (Button) findViewById(R.id.create_account_btn);
         Button btnLogin = (Button)findViewById(R.id.login_btn);
+
+        usernameTextBox = new EditText(this);
+        usernameTextBox = (EditText) findViewById(R.id.firstpage_username);
+
+        passwordTextBox = new EditText(this);
+        passwordTextBox = (EditText) findViewById(R.id.firstpage_password);
+
+        db = new MySQLiteHelper(this);
         
         btnNextScreen.setOnClickListener(new View.OnClickListener() {
         	 
@@ -33,12 +53,43 @@ public class MainActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {       	 
             public void onClick(View arg0) {
                 //Starting a new Intent
-                Intent nextScreen = new Intent(getApplicationContext(), Logedin.class);
-                startActivity(nextScreen);}
+                db.getAllUsers();
+                User checkUser = db.getUser(usernameTextBox.getText().toString());
+                if (checkUser.getPassword().equals(passwordTextBox.getText().toString())) {
+                    Intent nextScreen = new Intent(getApplicationContext(), Logedin.class);
+                    startActivity(nextScreen);
+                } else
+                    messgeBox("Error loggin you in. Please check username and password");
+            }
         });
    
     }
 
+    private void messgeBox(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set title
+        alertDialogBuilder.setTitle("Create Account Error");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, close
+                        // current activity
+                    }
+                });
+
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

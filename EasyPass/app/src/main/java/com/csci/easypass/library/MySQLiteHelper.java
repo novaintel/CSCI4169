@@ -70,10 +70,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static final String[] COLUMNSUSER = {KEY_ID,KEY_USERNAME,KEY_PASSWORD};
     private static final String[] COLUMNSWEBSITE = {KEY_ID,KEY_WEBSITEURL,KEY_USERNAME,KEY_PASSWORD};
 
-    public void addUser(User user){
+    public boolean addUser(User user){
         Log.d("addUser", user.toString());
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor =
+                db.query(TABLE_USERS, // a. table
+                        COLUMNSUSER, // b. column names
+                        " id = ?", // c. selections
+                        new String[] { user.getUsername() }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        // 3. if we got results get the first one
+        if (cursor != null)
+            return false;
 
         // 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
@@ -87,6 +101,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // 4. close
         db.close();
+
+        return true;
     }
 
     public void addWebsite(Website website){
@@ -115,15 +131,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // 2. build query
-        Cursor cursor =
-                db.query(TABLE_USERS, // a. table
-                        COLUMNSUSER, // b. column names
-                        " id = ?", // c. selections
-                        new String[] { username }, // d. selections args
-                        null, // e. group by
-                        null, // f. having
-                        null, // g. order by
-                        null); // h. limit
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + KEY_USERNAME + " = " + "'" + username + "' ", null);
 
         // 3. if we got results get the first one
         if (cursor != null)
