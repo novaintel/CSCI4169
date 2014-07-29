@@ -41,6 +41,17 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/n7design_setting" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addWebsite_button"
+            android:layout_alignLeft="@+id/add_new_account"
+            android:layout_alignStart="@+id/add_new_account"
+            android:layout_alignBottom="@+id/add_new_account"
+            android:layout_alignRight="@+id/add_new_account"
+            android:layout_alignEnd="@+id/add_new_account"
+            android:visibility="invisible" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -62,7 +73,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
-            <TextView
+            TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username"
@@ -71,16 +82,15 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="71dp" />
 
-            <TextView
+            TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Password"
-                android:id="@+id/password_text"
-                android:layout_centerVertical="true"
+                android:id="@+id/password_text"                android:layout_centerVertical="true"
                 android:layout_alignLeft="@+id/username_text"
                 android:layout_alignStart="@+id/username_text" />
 
-            <TextView
+            TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Website URL "
@@ -89,6 +99,37 @@
                 android:layout_alignLeft="@+id/username_text"
                 android:layout_alignStart="@+id/username_text"
                 android:layout_marginBottom="65dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Website URL"
+                android:id="@+id/websiteUrl_TextBox"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="71dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Username"
+                android:id="@+id/username_TextBox"
+                android:layout_below="@+id/websiteUrl_TextBox"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="59dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="password"
+                android:id="@+id/password_TextBox"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/username_TextBox"
+                android:layout_alignStart="@+id/username_TextBox" />
+
         </RelativeLayout>
 
     </LinearLayout>

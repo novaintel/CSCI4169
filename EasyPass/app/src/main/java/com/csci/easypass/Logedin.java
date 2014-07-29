@@ -7,6 +7,7 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,13 +33,13 @@ public class Logedin extends Activity {
         setContentView(R.layout.logedin);
 
         websiteUrl=new TextView(this);
-        websiteUrl=(TextView)findViewById(R.id.websiteurl_text);
+        websiteUrl=(TextView)findViewById(R.id.websiteUrl_TextBox);
 
         username=new TextView(this);
-        username=(TextView)findViewById(R.id.username_text);
+        username=(TextView)findViewById(R.id.username_TextBox);
 
         password=new TextView(this);
-        password=(TextView)findViewById(R.id.password_text);
+        password=(TextView)findViewById(R.id.password_TextBox);
 
         db = new MySQLiteHelper(this);
 
@@ -79,6 +80,14 @@ public class Logedin extends Activity {
                 username.setText(currentWebsite.getUsername());
                 password.setText(currentWebsite.getPassword());
                 websiteUrl.setText(currentWebsite.getWebsiteUrl());
+            }
+        });
+
+        final Button addWebsiteButton = (Button) findViewById(R.id.addWebsite_button);
+
+        addWebsiteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
             }
         });
 
