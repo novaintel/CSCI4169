@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
                 //Starting a new Intent
                 db.getAllUsers();
                 User checkUser = db.getUser(usernameTextBox.getText().toString());
+                db.getAllUsers();
                 if(checkUser == null)
                     messgeBox("Error logging you in. Please check username and password");
                 else if (checkUser.getPassword().equals(passwordTextBox.getText().toString())) {

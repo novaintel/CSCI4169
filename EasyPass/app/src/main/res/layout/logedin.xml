@@ -49,8 +49,7 @@
             android:layout_alignStart="@+id/add_new_account"
             android:layout_alignBottom="@+id/add_new_account"
             android:layout_alignRight="@+id/add_new_account"
-            android:layout_alignEnd="@+id/add_new_account"
-            android:visibility="invisible" />
+            android:layout_alignEnd="@+id/add_new_account" />
 
     </RelativeLayout>
 

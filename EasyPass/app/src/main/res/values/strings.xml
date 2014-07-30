@@ -10,4 +10,7 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="reenter_password">reenter password</string>
+    <string name="newsite" />
+    <string name="cancel" />
+    <string name="websiteurl">Website Url</string>
 </resources>
