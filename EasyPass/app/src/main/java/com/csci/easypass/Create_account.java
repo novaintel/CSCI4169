@@ -58,7 +58,7 @@ public class Create_account extends Activity {
                 else if(passwordAgain.equals("") || passwordAgain.equals(" ")){
                     messgeBox("Please enter your password again");
                 }
-                else if(password.equals(passwordAgain)){
+                else if(!password.equals(passwordAgain)){
                     messgeBox("Passwords do not match!");
                 }
                 else if(password.equals(passwordAgain)){

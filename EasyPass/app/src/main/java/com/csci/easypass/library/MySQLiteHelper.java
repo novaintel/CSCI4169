@@ -136,6 +136,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // 3. if we got results get the first one
         if (cursor != null)
             cursor.moveToFirst();
+        else
+            return null;
+
+        if(cursor.getCount() == 0)
+            return null;
 
         // 4. build book object
         User user = new User();

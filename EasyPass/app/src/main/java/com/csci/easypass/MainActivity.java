@@ -55,11 +55,13 @@ public class MainActivity extends Activity {
                 //Starting a new Intent
                 db.getAllUsers();
                 User checkUser = db.getUser(usernameTextBox.getText().toString());
-                if (checkUser.getPassword().equals(passwordTextBox.getText().toString())) {
+                if(checkUser == null)
+                    messgeBox("Error logging you in. Please check username and password");
+                else if (checkUser.getPassword().equals(passwordTextBox.getText().toString())) {
                     Intent nextScreen = new Intent(getApplicationContext(), Logedin.class);
                     startActivity(nextScreen);
                 } else
-                    messgeBox("Error loggin you in. Please check username and password");
+                    messgeBox("Error logging you in. Please check username and password");
             }
         });
    
