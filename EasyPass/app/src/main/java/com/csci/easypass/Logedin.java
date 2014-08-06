@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.csci.easypass.library.HashGenerator;
 import com.csci.easypass.library.MySQLiteHelper;
 import com.csci.easypass.library.User;
 import com.csci.easypass.library.Website;
@@ -85,6 +87,18 @@ public class Logedin extends Activity implements Serializable{
         addWebsiteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showInputDialog();
+            }
+        });
+
+
+        final Button settingsButton = (Button) findViewById(R.id.settingsLogin_button);
+
+        settingsButton.setBackgroundColor(Color.TRANSPARENT);
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(getApplicationContext(), Settings.class);
+                startActivity(nextScreen);
             }
         });
     }
