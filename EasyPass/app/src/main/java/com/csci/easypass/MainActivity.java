@@ -60,6 +60,9 @@ public class MainActivity extends Activity {
                     messgeBox("Error logging you in. Please check username and password");
                 else if (checkUser.getPassword().equals(passwordTextBox.getText().toString())) {
                     Intent nextScreen = new Intent(getApplicationContext(), Logedin.class);
+                    Bundle userBundle = new Bundle();
+                    userBundle.putParcelable("com.csci.easypass.library.User", checkUser);
+                    nextScreen.putExtras(userBundle);
                     startActivity(nextScreen);
                 } else
                     messgeBox("Error logging you in. Please check username and password");

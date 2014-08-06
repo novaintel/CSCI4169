@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +18,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.csci.easypass.library.MySQLiteHelper;
+import com.csci.easypass.library.User;
 import com.csci.easypass.library.Website;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +29,11 @@ import java.util.List;
  * Created by James on 2014-07-14.
  */
 
-public class Logedin extends Activity{
+public class Logedin extends Activity implements Serializable{
     TextView webSiteUrlText;
     TextView usernameText;
     TextView passwordText;
+    User user;
 
     ListView lv;
 
@@ -39,6 +44,8 @@ public class Logedin extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logedin);
+
+        user = (User)getIntent().getParcelableExtra("com.csci.easypass.library.User");
 
         webSiteUrlText=new TextView(this);
         webSiteUrlText=(TextView)findViewById(R.id.websiteUrl_TextBox);
@@ -84,7 +91,7 @@ public class Logedin extends Activity{
 
     protected void refreshList(){
 
-        List<Website> listWebsite = db.getAllWebsites();
+        List<Website> listWebsite = db.getAllWebsites(user.getId());
         listWebIDs = new ArrayList<Integer>();
 
         if(webSiteUrl == null)
@@ -123,7 +130,7 @@ public class Logedin extends Activity{
                         String websiteUser = websiteUserNameEditText.getText().toString();
                         String websitePassword = websitePasswordEditText.getText().toString();
 
-                        Website newWebsite = new Website(websiteUrl,websiteUser,websitePassword);
+                        Website newWebsite = new Website(websiteUrl,websiteUser,websitePassword,user.getId());
 
                         db.addWebsite(newWebsite);
 
@@ -142,7 +149,4 @@ public class Logedin extends Activity{
         alert.show();
 
     }
-
-
-
 }

@@ -64,6 +64,9 @@ public class Create_account extends Activity {
                 else if(password.equals(passwordAgain)){
                     db.addUser(new User(username, password));
                     Intent nextScreen = new Intent(getApplicationContext(), Logedin.class);
+                    Bundle userBundle = new Bundle();
+                    userBundle.putParcelable("com.csci.easypass.library.User", db.getUser(username));
+                    nextScreen.putExtras(userBundle);
                     startActivity(nextScreen);
                 }
 

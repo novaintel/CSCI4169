@@ -1,9 +1,12 @@
 package com.csci.easypass.library;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by James on 2014-07-23.
  */
-public class User {
+public class User implements Parcelable {
 
     private int id;
     private String password;
@@ -47,5 +50,33 @@ public class User {
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 '}';
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel parcel) {
+            User user = new User();
+            user.setId(parcel.readInt());
+            user.setUsername(parcel.readString());
+            user.setPassword(parcel.readString());
+            return user;
+        }
+
+        @Override
+        public User[] newArray(int i) {
+            return new User[0];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(username);
+        parcel.writeString(password);
     }
 }

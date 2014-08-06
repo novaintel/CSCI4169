@@ -32,9 +32,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         String CREATE_WEBSITE_TABLE = "CREATE TABLE website ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "userId INTEGER, " +
                 "websiteUrl TEXT, "+
                 "username TEXT, "+
-                "password TEXT )";
+                "password TEXT, " +
+                "FOREIGN KEY (userId) REFERENCES users (id));";
 
 
         // create books table
@@ -63,6 +65,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     // User Table Columns names
     private static final String KEY_ID = "id";
+    private static final String KEY_USERID = "userId";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_WEBSITEURL = "websiteUrl";
@@ -99,6 +102,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
+        values.put(KEY_USERID, website.getUserId());
         values.put(KEY_WEBSITEURL, website.getWebsiteUrl());
         values.put(KEY_USERNAME, website.getUsername()); // get username
         values.put(KEY_PASSWORD, website.getPassword()); // get password
@@ -204,11 +208,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         return users;
     }
 
-    public List<Website> getAllWebsites() {
+    public List<Website> getAllWebsites(int userId) {
         List<Website> websites = new LinkedList<Website>();
 
         // 1. build the query
-        String query = "SELECT  * FROM " + TABLE_WEBSITE;
+        String query = "SELECT  * FROM " + TABLE_WEBSITE + " WHERE " + KEY_USERID + " = " + "'" + userId + "' ";
 
         // 2. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
@@ -220,9 +224,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             do {
                 website = new Website();
                 website.setId(Integer.parseInt(cursor.getString(0)));
-                website.setWebsiteUrl(cursor.getString(1));
-                website.setUsername(cursor.getString(2));
-                website.setPassword(cursor.getString(3));
+                website.setUserId(Integer.parseInt(cursor.getString(1)));
+                website.setWebsiteUrl(cursor.getString(2));
+                website.setUsername(cursor.getString(3));
+                website.setPassword(cursor.getString(4));
 
                 // Add book to books
                 websites.add(website);

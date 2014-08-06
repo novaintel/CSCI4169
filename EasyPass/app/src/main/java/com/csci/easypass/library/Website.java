@@ -9,14 +9,16 @@ public class Website {
     private String websiteUrl;
     private String username;
     private String password;
+    private int userId;
 
     public Website() {
     }
 
-    public Website(String websiteUrl, String username, String password) {
+    public Website(String websiteUrl, String username, String password, int userId) {
         this.websiteUrl = websiteUrl;
         this.username = username;
         this.password = password;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -51,6 +53,14 @@ public class Website {
         this.password = password;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Website{" +
@@ -58,6 +68,7 @@ public class Website {
                 ", websiteUrl='" + websiteUrl + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 }
