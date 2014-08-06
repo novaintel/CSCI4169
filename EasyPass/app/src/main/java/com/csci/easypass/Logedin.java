@@ -7,8 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.text.ClipboardManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.csci.easypass.library.HashGenerator;
 import com.csci.easypass.library.MySQLiteHelper;
 import com.csci.easypass.library.User;
 import com.csci.easypass.library.Website;
@@ -42,21 +40,20 @@ public class Logedin extends Activity implements Serializable{
     MySQLiteHelper db;
     ArrayList<Integer> listWebIDs;
     ArrayList<String> webSiteUrl;
+    ClipboardManager clipboard;
+    Website currentWebsite;
     Context context = this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logedin);
+
+        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 
         user = (User)getIntent().getParcelableExtra("com.csci.easypass.library.User");
 
         webSiteUrlText=new TextView(this);
         webSiteUrlText=(TextView)findViewById(R.id.websiteUrl_TextBox);
 
-        usernameText=new TextView(this);
-        usernameText=(TextView)findViewById(R.id.username_TextBox);
-
-        passwordText=new TextView(this);
-        passwordText=(TextView)findViewById(R.id.password_TextBox);
 
         db = new MySQLiteHelper(this);
 
@@ -73,9 +70,7 @@ public class Logedin extends Activity implements Serializable{
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
-                Website currentWebsite = db.getWebSite(listWebIDs.get((int)mylng));
-                usernameText.setText(currentWebsite.getUsername());
-                passwordText.setText(currentWebsite.getPassword());
+                currentWebsite = db.getWebSite(listWebIDs.get((int)mylng));
                 webSiteUrlText.setText(currentWebsite.getWebsiteUrl());
             }
         });
@@ -99,6 +94,25 @@ public class Logedin extends Activity implements Serializable{
             public void onClick(View v) {
                 Intent nextScreen = new Intent(getApplicationContext(), Settings.class);
                 startActivity(nextScreen);
+            }
+        });
+
+        final Button usernameButton = (Button) findViewById(R.id.userNameCopy);
+
+        usernameButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(currentWebsite != null)
+                     clipboard.setText(currentWebsite.getUsername());
+            }
+        });
+
+
+        final Button passwordButton = (Button) findViewById(R.id.copyPassword_button);
+
+        passwordButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            if(currentWebsite != null)
+                clipboard.setText(currentWebsite.getPassword());
             }
         });
     }
